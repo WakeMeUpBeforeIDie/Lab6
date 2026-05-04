@@ -27,7 +27,7 @@ bool TextGenerator::buildTable(const std::string& filename) {
     }
     while (file >> word) {
         word.erase(std::remove_if(word.begin(), word.end(),
-            [](char c) { return std::ispunct(static_cast<unsigned char>(c)); 
+            [](char c) { return std::ispunct(static_cast<unsigned char>(c));
             }),
             word.end());
 
@@ -58,7 +58,6 @@ std::string TextGenerator::generate() {
     if (it != statetab.end()) {
         prefix = it->first;
     }
-    
     for (const auto& w : prefix) {
         if (!w.empty()) {
             output << w << " ";
@@ -72,11 +71,9 @@ std::string TextGenerator::generate() {
         }
         std::uniform_int_distribution<> dist(0, it->second.size() - 1);
         std::string suffix = it->second[dist(rng)];
-
         if (suffix.empty()) {
             break;
         }
-
         output << suffix << " ";
         generated++;
         prefix.pop_front();
@@ -85,10 +82,11 @@ std::string TextGenerator::generate() {
     return output.str();
 }
 
-bool TextGenerator::saveToFile(const std::string& filename, const std::string& text) {
+bool TextGenerator::saveToFile(const std::string& filename,
+const std::string& text) {
     std::ofstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Ошибка: не удалось создать файл " << filename << std::endl;
+        std::cerr << "Ошибка" << filename << std::endl;
         return false;
     }
     file << text;
