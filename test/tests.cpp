@@ -18,7 +18,9 @@ class MarkovChainTester {
     Statetab statetab;
     const int NPREF;
     std::mt19937 rng;
+
  public:
+
     explicit MarkovChainTester(int npref = 2) : NPREF(npref) {
         rng.seed(42);
     }
@@ -53,7 +55,7 @@ class MarkovChainTester {
     std::string generateText(int maxWords, const Prefix& startPrefix) {
         if (statetab.empty()) {
             return "";
-        }  
+        }
         std::ostringstream output;
         Prefix prefix = startPrefix;
         for (const auto& w : prefix) {
@@ -129,7 +131,7 @@ TEST(MarkovChainTest, SingleSuffixSelection) {
 }
 TEST(MarkovChainTest, MultipleSuffixesRandomSelection) {
     MarkovChainTester tester(2);
-    std::vector<std::string> suffixes = {"suffix1", "suffix2", "suffix3", 
+    std::vector<std::string> suffixes = {"suffix1", "suffix2", "suffix3",
     "suffix4", "suffix5"};
     std::map<std::string, int> selectionCount;
     for (int i = 0; i < 100; ++i) {
