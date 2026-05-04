@@ -16,7 +16,7 @@ class TextGenerator {
     Statetab statetab;
     const int NPREF;
     const int MAXGEN;
-    std::mt19937 rng; 
+    std::mt19937 rng;
  public:
     explicit TextGenerator(int npref = 2, int maxgen = 1000);
     bool buildTable(const std::string& filename);
