@@ -20,7 +20,6 @@ class MarkovChainTester {
     std::mt19937 rng;
 
  public:
-
     explicit MarkovChainTester(int npref = 2) : NPREF(npref) {
         rng.seed(42);
     }
