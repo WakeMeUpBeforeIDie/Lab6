@@ -27,7 +27,8 @@ class MarkovChainTester {
     }
     Prefix makePrefix(const std::vector<std::string>& words) {
         Prefix prefix;
-        for (size_t i = 0; i < words.size() && i < static_cast<size_t>(NPREF); ++i) {
+        for (size_t i = 0;
+         i < words.size() && i < static_cast<size_t>(NPREF); ++i) {
             prefix.push_back(words[i]);
         }
         while (prefix.size() < static_cast<size_t>(NPREF)) {
@@ -128,14 +129,15 @@ TEST(MarkovChainTest, SingleSuffixSelection) {
 }
 TEST(MarkovChainTest, MultipleSuffixesRandomSelection) {
     MarkovChainTester tester(2);
-    std::vector<std::string> suffixes = {"suffix1", "suffix2", "suffix3", "suffix4", "suffix5"};
+    std::vector<std::string> suffixes = {"suffix1", "suffix2", "suffix3", 
+    "suffix4", "suffix5"};
     std::map<std::string, int> selectionCount;
     for (int i = 0; i < 100; ++i) {
         std::string selected = tester.selectRandomSuffix(suffixes);
         selectionCount[selected]++;
     }
     for (const auto& suffix : suffixes) {
-        EXPECT_GT(selectionCount[suffix], 0) << "Suffix " << suffix << " never selected";
+        EXPECT_GT(selectionCount[suffix], 0) << "Suffix " << suffix;
     }
     EXPECT_EQ(selectionCount.size(), suffixes.size());
 }
@@ -166,7 +168,7 @@ TEST(MarkovChainTest, TextGenerationWithFixedLength) {
     EXPECT_TRUE(text.find("the quick brown fox jumps") != std::string::npos);
 }
 TEST(MarkovChainTest, GenerationStopsWhenNoSuffix) {
-    MarkovChainTester tester(2);  
+    MarkovChainTester tester(2);
     Prefix prefix;
     prefix.push_back("hello");
     prefix.push_back("world");
@@ -228,8 +230,9 @@ TEST(MarkovChainTest, ComplexGenerationWithMultipleBranches) {
     std::string text = tester.generateText(10, startPrefix);
     int wordCount = tester.countWords(text);
     EXPECT_GT(wordCount, 0);
-    EXPECT_EQ(text.find("I am"), 0);   
-    std::vector<std::string> validWords = {"I", "am", "happy", "sad", "because", "very"};
+    EXPECT_EQ(text.find("I am"), 0);
+    std::vector<std::string> validWords = {"I", "am", "happy", "sad",
+    "because", "very"};
     std::istringstream iss(text);
     std::string word;
     while (iss >> word) {
