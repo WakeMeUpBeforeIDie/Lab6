@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "textgen.h"
 
 int main(int argc, char* argv[]) {
