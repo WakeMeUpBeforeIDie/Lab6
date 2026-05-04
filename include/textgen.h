@@ -1,7 +1,7 @@
 // Copyright 2026
 
-#ifndef TEXTGEN_H
-#define TEXTGEN_H
+#ifndef INCLUDE_TEXTGEN_H_
+#define INCLUDE_TEXTGEN_H_
 
 #include <deque>
 #include <map>
@@ -10,19 +10,18 @@
 #include <random>
 
 class TextGenerator {
-private:
+ private:
     typedef std::deque<std::string> Prefix;
     typedef std::map<Prefix, std::vector<std::string>> Statetab;
     Statetab statetab;
     const int NPREF;
     const int MAXGEN;
-    std::mt19937 rng;
-    
-public:
-    TextGenerator(int npref = 2, int maxgen = 1000);
+    std::mt19937 rng; 
+ public:
+    explicit TextGenerator(int npref = 2, int maxgen = 1000);
     bool buildTable(const std::string& filename);
     std::string generate();
     bool saveToFile(const std::string& filename, const std::string& text);
 };
 
-#endif // TEXTGEN_H
+#endif  // INCLUDE_TEXTGEN_H_
